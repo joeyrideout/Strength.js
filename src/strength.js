@@ -12,7 +12,8 @@
             strengthMeterClass: 'strength_meter',
             strengthButtonClass: 'button_strength',
             strengthButtonText: 'Show Password',
-            strengthButtonTextToggle: 'Hide Password'
+            strengthButtonTextToggle: 'Hide Password',
+            submitButton: '#submit'
         };
 
        // $('<style>body { background-color: red; color: white; }</style>').appendTo('head');
@@ -63,19 +64,23 @@
             function get_total(total,thisid){
 
                 var thismeter = $('div[data-meter="'+thisid+'"]');
-                    if (total <= 1) {
+                var button = $(submitButton);
+                if (total <= 1) {
                    thismeter.removeClass();
                    thismeter.addClass('veryweak').html('very weak');
+                   button.attr('disabled','disabled');
                 } else if (total == 2){
-                    thismeter.removeClass();
+                   thismeter.removeClass();
                    thismeter.addClass('weak').html('weak');
+                   button.attr('disabled','disabled');
                 } else if(total == 3){
-                    thismeter.removeClass();
+                   thismeter.removeClass();
                    thismeter.addClass('medium').html('medium');
-
+                   button.attr('disabled','disabled');
                 } else {
-                     thismeter.removeClass();
+                   thismeter.removeClass();
                    thismeter.addClass('strong').html('strong');
+                   button.removeAttr('disabled');
                 }
                 
                 if (total == -1) { thismeter.removeClass().html('Strength'); }
